@@ -12,5 +12,6 @@ namespace Pioneer_Backend.DataAccess.Data
         public DbSet<Member> Members { get; set; }
         public DbSet<ProjectCollection> Projects { get; set; }
         public DbSet<RewardCollection> Rewards { get; set; }
+        public DbSet<Event> Events { get; set; }
     }
 }
