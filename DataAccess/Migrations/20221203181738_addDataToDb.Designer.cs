@@ -12,8 +12,8 @@ using Pioneer_Backend.DataAccess.Data;
 namespace PioneerBackend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221203172505_AddDataToDb")]
-    partial class AddDataToDb
+    [Migration("20221203181738_addDataToDb")]
+    partial class addDataToDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -56,6 +56,34 @@ namespace PioneerBackend.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ContactInfos");
+                });
+
+            modelBuilder.Entity("Pioneer_Backend.Model.Event", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EventDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EventName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Events");
                 });
 
             modelBuilder.Entity("Pioneer_Backend.Model.Member", b =>
