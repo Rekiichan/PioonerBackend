@@ -14,26 +14,38 @@ namespace Pioneer_Backend.Controllers
     [ApiController]
     public class MemberController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _db;
 
         public MemberController(ApplicationDbContext context)
         {
-            _context = context;
+            _db = context;
         }
 
         // GET: api/Member
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Member>>> GetMembers()
         {
-            return await _context.Members.ToListAsync();
+            return await _db.Members.ToListAsync();
         }
 
         // GET: api/Member/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Member>> GetMember(int id)
+        [HttpGet("{id:int}",Name = "GetMember")]
+        public async Task<ActionResult<Member>> GetMemberById(int id)
         {
-            var member = await _context.Members.FindAsync(id);
+            var member = await _db.Members.FindAsync(id);
 
+            if (member == null)
+            {
+                return NotFound();
+            }
+
+            return member;
+        }
+
+        [HttpGet("{nameId}")]
+        public async Task<ActionResult<Member>> GetMemberByNameId(string nameId)
+        {
+            var member = await _db.Members.FirstOrDefaultAsync(x => x.NameID == nameId);
             if (member == null)
             {
                 return NotFound();
@@ -44,7 +56,7 @@ namespace Pioneer_Backend.Controllers
 
         // PUT: api/Member/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> PutMember(int id, Member member)
         {
             if (id != member.Id)
@@ -52,13 +64,13 @@ namespace Pioneer_Backend.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(member).State = EntityState.Modified;
+            _db.Entry(member).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _db.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException e)
             {
                 if (!MemberExists(id))
                 {
@@ -66,20 +78,59 @@ namespace Pioneer_Backend.Controllers
                 }
                 else
                 {
-                    throw;
+                    throw e;
                 }
             }
 
             return NoContent();
         }
 
+        [HttpPut("{nameId}")]
+        public async Task<IActionResult> PutMember(string nameId, Member member)
+        {
+            if (nameId != member.NameID)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                await _db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException e)
+            {
+                if (!MemberExists(nameId))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw e;
+                }
+            }
+            await _db.SaveChangesAsync();
+            return NoContent();
+        }
+
         // POST: api/Member
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Member>> PostMember(Member member)
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<Member>> PostMember([FromBody]Member member)
         {
-            _context.Members.Add(member);
-            await _context.SaveChangesAsync();
+            if (member == null)
+            {
+                return BadRequest(member);
+            }
+            if (member.Id > 0)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+            member.Id = _db.Members.OrderByDescending(x => x.Id).First().Id+1;
+            _db.Members.Add(member);
+            await _db.SaveChangesAsync();
 
             return CreatedAtAction("GetMember", new { id = member.Id }, member);
         }
@@ -88,21 +139,25 @@ namespace Pioneer_Backend.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteMember(int id)
         {
-            var member = await _context.Members.FindAsync(id);
+            var member = await _db.Members.FindAsync(id);
             if (member == null)
             {
                 return NotFound();
             }
 
-            _context.Members.Remove(member);
-            await _context.SaveChangesAsync();
+            _db.Members.Remove(member);
+            await _db.SaveChangesAsync();
 
             return NoContent();
         }
 
         private bool MemberExists(int id)
         {
-            return _context.Members.Any(e => e.Id == id);
+            return _db.Members.Any(e => e.Id == id);
+        }
+        private bool MemberExists(string nameId)
+        {
+            return _db.Members.Any(e => e.NameID == nameId);
         }
     }
 }

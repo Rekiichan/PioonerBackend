@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -20,28 +21,21 @@ namespace Pioneer_Backend.Model
         [ValidateNever]
         public string ImageUrl { get; set; }
         [Required]
+        [DisplayName("Thế mạnh")]
         public string Strenghs { get; set; }
         [Required]
+        [DisplayName("Nhiệm kỳ")]
         public string Term { get; set; }
         [Required]
+        [DisplayName("Lớp")]
         public string Class { get; set; }
+        [DisplayName("Link Facebook")]
+        public string Facebook { get; set; }
+        public string Gmail { get; set; }
+        public string GitHub { get; set; }
+        public string Linkedin { get; set; }
+        public string CV { get; set; }
         public string Describe { get; set; }
-        [Required]
-        public int ContactInfoId { get; set; }
-        [ForeignKey("ContactInfoId")]
-        [ValidateNever]
-        public ContactInfo ContactInfo { get; set; }
 
-        [Required]
-        public int RewardId { get; set; }
-        [ForeignKey("RewardId")]
-        [ValidateNever]
-        public ICollection<RewardCollection> Rewards { get; set; }
-
-        [Required]
-        public int ProjectId { get; set; }
-        [ForeignKey("ProjectId")]
-        [ValidateNever]
-        public ICollection<ProjectCollection> Projects{ get; set; }
     }
 }
