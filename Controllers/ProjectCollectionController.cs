@@ -45,7 +45,7 @@ namespace Pioneer_Backend.Controllers
         // PUT: api/ProjectCollection/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProjectCollection(int id, ProjectCollection projectCollection)
+        public async Task<IActionResult> PutProjectCollection(int id, [FromBody]ProjectCollection projectCollection)
         {
             if (id != projectCollection.Id)
             {
@@ -58,7 +58,7 @@ namespace Pioneer_Backend.Controllers
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException e)
             {
                 if (!ProjectCollectionExists(id))
                 {
@@ -66,7 +66,7 @@ namespace Pioneer_Backend.Controllers
                 }
                 else
                 {
-                    throw;
+                    throw e;
                 }
             }
 
@@ -76,7 +76,7 @@ namespace Pioneer_Backend.Controllers
         // POST: api/ProjectCollection
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<ProjectCollection>> PostProjectCollection(ProjectCollection projectCollection)
+        public async Task<ActionResult<ProjectCollection>> PostProjectCollection([FromBody]ProjectCollection projectCollection)
         {
             _context.Projects.Add(projectCollection);
             await _context.SaveChangesAsync();

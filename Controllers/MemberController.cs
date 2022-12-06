@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Pioneer_Backend.DataAccess.Data;
 using Pioneer_Backend.Model;
+using static Azure.Core.HttpHeader;
 
 namespace Pioneer_Backend.Controllers
 {
@@ -15,27 +16,34 @@ namespace Pioneer_Backend.Controllers
     public class MemberController : ControllerBase
     {
         private readonly ApplicationDbContext _db;
-
-        public MemberController(ApplicationDbContext context)
+        private readonly ILogger<MemberController> _logger;
+        public MemberController(ApplicationDbContext context,ILogger<MemberController> logger)
         {
             _db = context;
+            _logger = logger;
         }
 
         // GET: api/Member
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Member>>> GetMembers()
         {
+            _logger.LogInformation("LOG: Getting all members");
             return await _db.Members.ToListAsync();
         }
 
         // GET: api/Member/5
-        [HttpGet("{id:int}",Name = "GetMember")]
+        [HttpGet("{id:int}", Name = "GetMemberById")]
         public async Task<ActionResult<Member>> GetMemberById(int id)
         {
+            if (id == 0)
+            {
+                _logger.LogInformation("LOG: Get member error with Id " + id);
+                return BadRequest();
+            }
             var member = await _db.Members.FindAsync(id);
-
             if (member == null)
             {
+                _logger.LogInformation("LOG: Don't see member data with Id " + id);
                 return NotFound();
             }
 
@@ -45,22 +53,59 @@ namespace Pioneer_Backend.Controllers
         [HttpGet("{nameId}")]
         public async Task<ActionResult<Member>> GetMemberByNameId(string nameId)
         {
+
             var member = await _db.Members.FirstOrDefaultAsync(x => x.NameID == nameId);
             if (member == null)
             {
+                _logger.LogInformation("LOG: Don't see member data with nameId " + nameId);
                 return NotFound();
             }
 
             return member;
         }
 
+        // POST: api/Member
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<Member>> PostMember([FromForm] Member member)
+        {
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
+            if (_db.Members.FirstOrDefault(u => u.Name.ToLower() == member.Name.ToLower()) != null)
+            {
+                _logger.LogInformation("LOG: This member already exist!!!");
+                ModelState.AddModelError("CustomError", "Member already Exists!");
+                return BadRequest(ModelState);
+            }
+            if (member == null)
+            {
+                _logger.LogInformation("LOG: member is null!!!");
+                return BadRequest(member);
+            }
+            if (member.Id > 0)
+            {
+                _logger.LogInformation("LOG: Id Init is not zero!");
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+            _db.Members.Add(member);
+            await _db.SaveChangesAsync();
+            _logger.LogInformation("LOG: Add member Success!!!");
+            return CreatedAtAction("GetMemberById", new { id = member.Id }, member);
+        }
+
         // PUT: api/Member/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id:int}")]
-        public async Task<IActionResult> PutMember(int id, Member member)
+        public async Task<IActionResult> PutMember(int id, [FromBody] Member member)
         {
             if (id != member.Id)
             {
+                _logger.LogInformation("LOG: Don't see member with id: !!!" + id);
                 return BadRequest();
             }
 
@@ -69,11 +114,13 @@ namespace Pioneer_Backend.Controllers
             try
             {
                 await _db.SaveChangesAsync();
+                _logger.LogInformation("LOG: Update Success!!!");
             }
             catch (DbUpdateConcurrencyException e)
             {
                 if (!MemberExists(id))
                 {
+                    _logger.LogInformation("LOG: This member already exist!!!");
                     return NotFound();
                 }
                 else
@@ -86,7 +133,7 @@ namespace Pioneer_Backend.Controllers
         }
 
         [HttpPut("{nameId}")]
-        public async Task<IActionResult> PutMember(string nameId, Member member)
+        public async Task<IActionResult> PutMember(string nameId, [FromBody] Member member)
         {
             if (nameId != member.NameID)
             {
@@ -110,29 +157,6 @@ namespace Pioneer_Backend.Controllers
             }
             await _db.SaveChangesAsync();
             return NoContent();
-        }
-
-        // POST: api/Member
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<Member>> PostMember([FromBody]Member member)
-        {
-            if (member == null)
-            {
-                return BadRequest(member);
-            }
-            if (member.Id > 0)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError);
-            }
-            member.Id = _db.Members.OrderByDescending(x => x.Id).First().Id+1;
-            _db.Members.Add(member);
-            await _db.SaveChangesAsync();
-
-            return CreatedAtAction("GetMember", new { id = member.Id }, member);
         }
 
         // DELETE: api/Member/5

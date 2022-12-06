@@ -45,7 +45,7 @@ namespace Pioneer_Backend.Controllers
         // PUT: api/RewardCollection/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutRewardCollection(int id, RewardCollection rewardCollection)
+        public async Task<IActionResult> PutRewardCollection(int id, [FromBody] RewardCollection rewardCollection)
         {
             if (id != rewardCollection.Id)
             {
@@ -76,7 +76,7 @@ namespace Pioneer_Backend.Controllers
         // POST: api/RewardCollection
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<RewardCollection>> PostRewardCollection(RewardCollection rewardCollection)
+        public async Task<ActionResult<RewardCollection>> PostRewardCollection([FromBody]RewardCollection rewardCollection)
         {
             _context.Rewards.Add(rewardCollection);
             await _context.SaveChangesAsync();
