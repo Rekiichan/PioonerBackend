@@ -13,6 +13,6 @@ namespace Pioneer_Backend.Model
         public DateTime EventDate { get; set; }
         [ValidateNever]
         public string ImageUrl { get; set; }
-        public string Description { get; set; }
+        public string? Description { get; set; } = null;
     }
 }

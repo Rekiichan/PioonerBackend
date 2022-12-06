@@ -7,14 +7,18 @@ namespace Pioneer_Backend.Model
     {
         [Key]
         public int Id { get; set; }
+        [Required]
+        public string Name { get; set; }
+        [Required]
+        public string Mssv { get; set; }
         [ValidateNever]
         public string ImageUrl { get; set; }
         [Required]
         public string ProjectName { get; set; }
         [Required]
         public int YearImplement { get; set; }
-        public string DocumentUrl { get; set; }
-        public string Description { get; set; }
+        public string? DocumentUrl { get; set; } = null;
+        public string? Description { get; set; } = null;
 
     }
 }

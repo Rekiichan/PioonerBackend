@@ -8,11 +8,12 @@ namespace Pioneer_Backend.Model
     public class Member
     {
         [Key]
-        public int Id { get; set; } //mssv
-        [Required]
-        public string NameID { get; set; }
+        public int Id { get; set; }
+        public string? NameID { get; set; } = null;
         [Required]
         public string Name { get; set; }
+        [Required]
+        public string Mssv { get; set; }
         [Required]
         public string Role { get; set; }
         [Required]
@@ -30,12 +31,12 @@ namespace Pioneer_Backend.Model
         [DisplayName("Lớp")]
         public string Class { get; set; }
         [DisplayName("Link Facebook")]
-        public string Facebook { get; set; }
-        public string Gmail { get; set; }
-        public string GitHub { get; set; }
-        public string Linkedin { get; set; }
-        public string CV { get; set; }
-        public string Describe { get; set; }
+        public string? Facebook { get; set; } = null;
+        public string? Gmail { get; set; } = null;
+        public string? GitHub { get; set; } = null;
+        public string? Linkedin { get; set; } = null;
+        public string? CV { get; set; } = null;
+        public string? Describe { get; set; } = null;
 
     }
 }

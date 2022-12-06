@@ -8,10 +8,14 @@ namespace Pioneer_Backend.Model
         [Key]
         public int Id { get; set; }
         [Required]
+        public string Name { get; set; }
+        [Required]
+        public string Mssv { get; set; }
+        [Required]
         public string ContestName { get; set; }
         [Required]
         public string Rank { get; set; }
         [ValidateNever]
-        public string ImageUrl { get; set; }
+        public string? ImageUrl { get; set; } = null;
     }
 }
