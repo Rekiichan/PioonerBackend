@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Pioneer_Backend.Model
 {
@@ -19,6 +20,5 @@ namespace Pioneer_Backend.Model
         public int YearImplement { get; set; }
         public string? DocumentUrl { get; set; } = null;
         public string? Description { get; set; } = null;
-
     }
 }

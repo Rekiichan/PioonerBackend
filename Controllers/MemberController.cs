@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Pioneer_Backend.DataAccess.Data;
 using Pioneer_Backend.Model;
-using static Azure.Core.HttpHeader;
+using Pioneer_Backend.Model.Member;
 
 namespace Pioneer_Backend.Controllers
 {
@@ -70,7 +65,7 @@ namespace Pioneer_Backend.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<Member>> PostMember([FromForm] Member member)
+        public async Task<ActionResult<Member>> PostMember([FromBody] MemberCreate member)
         {
             //if (!ModelState.IsValid)
             //{
@@ -87,21 +82,34 @@ namespace Pioneer_Backend.Controllers
                 _logger.LogInformation("LOG: member is null!!!");
                 return BadRequest(member);
             }
-            if (member.Id > 0)
+            Member tempMember = new Member()
             {
-                _logger.LogInformation("LOG: Id Init is not zero!");
-                return StatusCode(StatusCodes.Status500InternalServerError);
-            }
-            _db.Members.Add(member);
+                Name = member.Name,
+                NameID = member.NameID,
+                Mssv = member.Mssv,
+                Role = member.Role,
+                Position = member.Position,
+                ImageUrl = member.ImageUrl,
+                Strenghs = member.Strenghs,
+                Term = member.Term,
+                Class = member.Class,
+                Facebook = member.Facebook,
+                Gmail = member.Gmail,
+                GitHub = member.GitHub,
+                Linkedin = member.Linkedin,
+                CV = member.CV,
+                Describe = member.Describe
+            };
+            await _db.Members.AddAsync(tempMember);
             await _db.SaveChangesAsync();
             _logger.LogInformation("LOG: Add member Success!!!");
-            return CreatedAtAction("GetMemberById", new { id = member.Id }, member);
+            return CreatedAtAction("GetMemberById", new { id = tempMember.Id }, tempMember);
         }
 
         // PUT: api/Member/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id:int}")]
-        public async Task<IActionResult> PutMember(int id, [FromBody] Member member)
+        public async Task<IActionResult> PutMember(int id, [FromForm] Member member)
         {
             if (id != member.Id)
             {
@@ -109,8 +117,27 @@ namespace Pioneer_Backend.Controllers
                 return BadRequest();
             }
 
-            _db.Entry(member).State = EntityState.Modified;
-
+            Member tempMember = new Member()
+            {
+                Id = member.Id,
+                Name = member.Name,
+                NameID = member.NameID,
+                Mssv = member.Mssv,
+                Role = member.Role,
+                Position = member.Position,
+                ImageUrl = member.ImageUrl,
+                Strenghs = member.Strenghs,
+                Term = member.Term,
+                Class = member.Class,
+                Facebook = member.Facebook,
+                Gmail = member.Gmail,
+                GitHub = member.GitHub,
+                Linkedin = member.Linkedin,
+                CV = member.CV,
+                Describe = member.Describe
+            };
+            _db.Entry(tempMember).State = EntityState.Modified;
+            
             try
             {
                 await _db.SaveChangesAsync();
@@ -139,6 +166,26 @@ namespace Pioneer_Backend.Controllers
             {
                 return BadRequest();
             }
+            Member tempMember = new Member()
+            {
+                Id = member.Id,
+                Name = member.Name,
+                NameID = member.NameID,
+                Mssv = member.Mssv,
+                Role = member.Role,
+                Position = member.Position,
+                ImageUrl = member.ImageUrl,
+                Strenghs = member.Strenghs,
+                Term = member.Term,
+                Class = member.Class,
+                Facebook = member.Facebook,
+                Gmail = member.Gmail,
+                GitHub = member.GitHub,
+                Linkedin = member.Linkedin,
+                CV = member.CV,
+                Describe = member.Describe
+            };
+            _db.Entry(tempMember).State = EntityState.Modified;
 
             try
             {
@@ -185,3 +232,4 @@ namespace Pioneer_Backend.Controllers
         }
     }
 }
+

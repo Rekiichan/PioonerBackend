@@ -3,11 +3,11 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Pioneer_Backend
+namespace Pioneer_Backend.Model.Member
 {
-    public class Member
+    public class MemberUpdate
     {
-        [Key]
+        [Required]
         public int Id { get; set; }
         public string? NameID { get; set; } = null;
         [Required]
