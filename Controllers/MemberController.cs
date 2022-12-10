@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Pioneer_Backend;
 
-namespace DynamoStudentManager.Controllers;
+namespace Pioneer_Backend.Controllers;
 [Route("api/[controller]")]
 [ApiController]
 public class MemberController : ControllerBase
@@ -12,41 +12,55 @@ public class MemberController : ControllerBase
     {
         _context = context;
     }
-    [HttpGet("{memberId}")]
-    public async Task<IActionResult> GetById(int memberId)
-    {
-        var member = await _context.LoadAsync<Member>(memberId);
-        if (member == null) return NotFound();
-        return Ok(member);
-    }
+    // GET: api/Member
     [HttpGet]
     public async Task<IActionResult> GetAllmembers()
     {
-        var member = await _context.ScanAsync<Member>(default).GetRemainingAsync();
+        var MemberList = await _context.ScanAsync<Member>(default).GetRemainingAsync();
+        return Ok(MemberList);
+    }
+    [HttpGet("{nameId}")]
+    public async Task<IActionResult> GetByNameId(string nameId)
+    {
+        var member = await _context.LoadAsync<Member>(nameId);
+        if (member == null)
+        { 
+            return NotFound(); 
+        }
         return Ok(member);
     }
-    [HttpPost]
-    public async Task<IActionResult> CreateStudent(Member memberRequest)
-    {
 
-        var member = await _context.LoadAsync<Member>(memberRequest.Id);
-        if (member != null) return BadRequest($"Student with Id {memberRequest.Id} Already Exists");
+    [HttpPost]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> CreateMember(Member memberRequest)
+    {
+        var member = await _context.LoadAsync<Member>(memberRequest.NameID);
+
+        if (member != null) return BadRequest($"Members with Id {memberRequest.NameID} Already Exists");
         await _context.SaveAsync(memberRequest);
         return Ok(memberRequest);
     }
-    [HttpDelete("{memberId}")]
-    public async Task<IActionResult> DeleteMember(int memberId)
+
+    [HttpDelete("{nameId}")]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> DeleteMember(string nameId)
     {
-        var member = await _context.LoadAsync<Member>(memberId);
+        var member = await _context.LoadAsync<Member>(nameId);
         if (member == null) return NotFound();
         await _context.DeleteAsync(member);
         return NoContent();
     }
-    [HttpPut]
-    public async Task<IActionResult> UpdateStudent(Member memberRequest)
+    [HttpPut("{nameId}")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> UpdateMember(Member memberRequest, string nameId)
     {
-        var student = await _context.LoadAsync<Member>(memberRequest.Id);
-        if (student == null) return NotFound();
+        var member = await _context.LoadAsync<Member>(nameId);
+        if (member == null) return NotFound();
         await _context.SaveAsync(memberRequest);
         return Ok(memberRequest);
     }

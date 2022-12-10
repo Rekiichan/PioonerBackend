@@ -6,17 +6,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Pioneer_Backend
 {
-    [DynamoDBTable("members")]
+    [DynamoDBTable("Members")]
     public class Member
     {
-        [DynamoDBHashKey("id")]
-        public int Id { get; set; }
-        [DynamoDBProperty("nameID")]
+        [DynamoDBHashKey("nameId")]
         public string? NameID { get; set; } = null;
         [DynamoDBProperty("name")]
         public string Name { get; set; }
         [DynamoDBProperty("mssv")]
-        public string Mssv { get; set; }
+        public int Mssv { get; set; }
         [DynamoDBProperty("role")]
         public string Role { get; set; }
         [DynamoDBProperty("position")]

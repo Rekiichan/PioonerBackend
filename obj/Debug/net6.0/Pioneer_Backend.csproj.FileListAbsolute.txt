@@ -298,3 +298,6 @@ D:\WorkspaceCLB\back-end\Pioneer_Backend\bin\Debug\net6.0\Serilog.Settings.Confi
 D:\WorkspaceCLB\back-end\Pioneer_Backend\bin\Debug\net6.0\Serilog.Sinks.Console.dll
 D:\WorkspaceCLB\back-end\Pioneer_Backend\bin\Debug\net6.0\Serilog.Sinks.Debug.dll
 D:\WorkspaceCLB\back-end\Pioneer_Backend\bin\Debug\net6.0\Serilog.Sinks.File.dll
+D:\WorkspaceCLB\back-end\Pioneer_Backend\bin\Debug\net6.0\AWSSDK.Core.dll
+D:\WorkspaceCLB\back-end\Pioneer_Backend\bin\Debug\net6.0\AWSSDK.DynamoDBv2.dll
+D:\WorkspaceCLB\back-end\Pioneer_Backend\bin\Debug\net6.0\AWSSDK.Extensions.NETCore.Setup.dll

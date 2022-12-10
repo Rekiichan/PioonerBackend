@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "c3UWhJUIdnmAgFw4OuD++43PYmEJtWBjX6eECCOtBKAVeNbym8g2Udy0i9DGIPfOJyRh1p0v0d+sSelFnNKxyg==",
+  "dgSpecHash": "LJZ9jEqv9iHwq7XiBW0LFHUmqSBM7Ga7mPofMibYku2UUBsgqKQ+CtTO5cPLUFS8sN1GTnxoGkf3smEM4thS/g==",
   "success": true,
   "projectFilePath": "D:\\WorkspaceCLB\\back-end\\Pioneer_Backend\\Pioneer_Backend.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\dtnha\\.nuget\\packages\\awssdk.core\\3.7.101.1\\awssdk.core.3.7.101.1.nupkg.sha512",
+    "C:\\Users\\dtnha\\.nuget\\packages\\awssdk.dynamodbv2\\3.7.100.29\\awssdk.dynamodbv2.3.7.100.29.nupkg.sha512",
+    "C:\\Users\\dtnha\\.nuget\\packages\\awssdk.extensions.netcore.setup\\3.7.2\\awssdk.extensions.netcore.setup.3.7.2.nupkg.sha512",
     "C:\\Users\\dtnha\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\dtnha\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\dtnha\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

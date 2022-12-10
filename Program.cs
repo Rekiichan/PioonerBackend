@@ -1,6 +1,3 @@
-using Serilog;
-using Microsoft.EntityFrameworkCore;
-using Pioneer_Backend.DataAccess.Data;
 using Amazon.DynamoDBv2.DataModel;
 using Amazon.DynamoDBv2;
 
@@ -13,10 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 //builder.Host.UseSerilog();
 
 
-builder.Services.AddControllers(option =>
-{
-    option.ReturnHttpNotAcceptable = true;
-}).AddNewtonsoftJson().AddXmlDataContractSerializerFormatters();
+builder.Services.AddControllers();
 //builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
 //    builder.Configuration.GetConnectionString("DefaultConnection"))
 //);

@@ -8,6 +8,8 @@
     ".NETCoreApp,Version=v6.0": {
       "Pioneer_Backend/1.0.0": {
         "dependencies": {
+          "AWSSDK.DynamoDBv2": "3.7.100.29",
+          "AWSSDK.Extensions.NETCore.Setup": "3.7.2",
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "6.0.11",
           "Microsoft.EntityFrameworkCore": "7.0.0",
           "Microsoft.EntityFrameworkCore.Design": "7.0.0",
@@ -19,6 +21,39 @@
         },
         "runtime": {
           "Pioneer_Backend.dll": {}
+        }
+      },
+      "AWSSDK.Core/3.7.101.1": {
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.Core.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.101.1"
+          }
+        }
+      },
+      "AWSSDK.DynamoDBv2/3.7.100.29": {
+        "dependencies": {
+          "AWSSDK.Core": "3.7.101.1"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.DynamoDBv2.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.100.29"
+          }
+        }
+      },
+      "AWSSDK.Extensions.NETCore.Setup/3.7.2": {
+        "dependencies": {
+          "AWSSDK.Core": "3.7.101.1",
+          "Microsoft.Extensions.Configuration.Abstractions": "7.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "7.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/AWSSDK.Extensions.NETCore.Setup.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.1.0"
+          }
         }
       },
       "Azure.Core/1.24.0": {
@@ -2638,6 +2673,27 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "AWSSDK.Core/3.7.101.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Mbcr/Hjgw/QYu1XkPfNuUdK/rFKb8fiJ+79XBDJQgXQI6yB7+zf64KyoweBzepQ65D697BrlVZ7pq+oZ698pXA==",
+      "path": "awssdk.core/3.7.101.1",
+      "hashPath": "awssdk.core.3.7.101.1.nupkg.sha512"
+    },
+    "AWSSDK.DynamoDBv2/3.7.100.29": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rV2hvlupx/VGTDsVzFYZVboloEAZsWV40C8DD4Uf+ymkKnCnsmV2mVa4Yor4gTnGvaxL3mcvHs1giI9vcXakTg==",
+      "path": "awssdk.dynamodbv2/3.7.100.29",
+      "hashPath": "awssdk.dynamodbv2.3.7.100.29.nupkg.sha512"
+    },
+    "AWSSDK.Extensions.NETCore.Setup/3.7.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-iFjbEnVB0f6Hr8L3EfdelHG7zxVQrOmeP9UIrX3IODR1eTsrqVrmq0mazdIr0GZK1YG2/DZiVt6tNyV1bayndw==",
+      "path": "awssdk.extensions.netcore.setup/3.7.2",
+      "hashPath": "awssdk.extensions.netcore.setup.3.7.2.nupkg.sha512"
     },
     "Azure.Core/1.24.0": {
       "type": "package",
