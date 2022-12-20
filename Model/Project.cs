@@ -11,15 +11,13 @@ namespace Pioneer_Backend.Model
         public string? ProjectId { get; set; }
         [BsonElement("name")]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-        [BsonElement("mssv")]
-        public string Mssv { get; set; }
+        public string? Name { get; set; }
         [BsonElement("imageUrl")]
-        public string ImageUrl { get; set; }
+        public string? ImageUrl { get; set; }
         [BsonElement("projectName")]
-        public string ProjectName { get; set; }
+        public string? ProjectName { get; set; }
         [BsonElement("yearImplement")]
-        public int YearImplement { get; set; }
+        public int? YearImplement { get; set; }
         [BsonElement("documentUrl")]
         public string? DocumentUrl { get; set; } = null;
         [BsonElement("description")]

@@ -9,11 +9,11 @@ namespace Pioneer_Backend.Model
         [BsonRepresentation(BsonType.ObjectId)]
         public string? EventId { get; set; }
         [BsonElement("eventName")]
-        public string EventName { get; set; }
+        public string? EventName { get; set; }
         [BsonElement("eventDate")]
-        public DateTime EventDate { get; set; }
+        public DateTime? EventDate { get; set; }
         [BsonElement("imageUrl")]
-        public string ImageUrl { get; set; }
+        public string? ImageUrl { get; set; }
         [BsonElement("description")]
         public string? Description { get; set; } = null;
     }

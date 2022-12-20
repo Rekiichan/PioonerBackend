@@ -6,11 +6,11 @@ namespace Pioneer_Backend.Model.UpsertModel
     public class EventUpsert
     {
         [BsonElement("eventName")]
-        public string EventName { get; set; }
+        public string? EventName { get; set; }
         [BsonElement("eventDate")]
-        public DateTime EventDate { get; set; }
+        public DateTime? EventDate { get; set; }
         [BsonElement("imageUrl")]
-        public string ImageUrl { get; set; }
+        public string? ImageUrl { get; set; }
         [BsonElement("description")]
         public string? Description { get; set; } = null;
     }
