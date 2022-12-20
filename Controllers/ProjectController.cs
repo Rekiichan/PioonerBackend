@@ -20,7 +20,7 @@ public class ProjectController : ControllerBase
         return await _projectService.GetAsyncAllProjects();
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{NameId}")]
     public async Task<IActionResult> GetProjectById(string id)
     {
         var project = await _projectService.GetAsyncProjectById(id);
@@ -40,7 +40,6 @@ public class ProjectController : ControllerBase
         var obj = new Project()
         {
             Name= newProject.Name,
-            Mssv =newProject.Mssv,
             ProjectName=newProject.ProjectName,
             YearImplement =newProject.YearImplement,
             DocumentUrl=newProject.DocumentUrl,
@@ -51,7 +50,7 @@ public class ProjectController : ControllerBase
         return CreatedAtAction("GetProjectById", new { id = obj.ProjectId }, obj);
     }
 
-    [HttpPut("{id}")]
+    [HttpPut("{NameId}")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -65,7 +64,7 @@ public class ProjectController : ControllerBase
         return NoContent();
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("{NameId}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]

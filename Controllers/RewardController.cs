@@ -20,7 +20,7 @@ public class RewardController : ControllerBase
         return await _rewardService.GetAsyncAllRewards();
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{NameId}")]
     public async Task<IActionResult> GetRewardById(string id)
     {
         var reward = await _rewardService.GetAsyncRewardById(id);
@@ -40,7 +40,6 @@ public class RewardController : ControllerBase
         var obj = new Reward()
         {
             MemberName= newReward.MemberName,
-            Mssv = newReward.Mssv,
             RewardRank=newReward.RewardRank,
             ContestName=newReward.ContestName,
             ImageUrl = newReward.ImageUrl,
@@ -50,7 +49,7 @@ public class RewardController : ControllerBase
         return CreatedAtAction("GetRewardById", new { id = obj.RewardId }, obj);
     }
 
-    [HttpPut("{id}")]
+    [HttpPut("{NameId}")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -63,7 +62,7 @@ public class RewardController : ControllerBase
         await _rewardService.UpdateAsync(id, rewardRequest);
         return NoContent();
     }
-    [HttpDelete("{id}")]
+    [HttpDelete("{NameId}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]

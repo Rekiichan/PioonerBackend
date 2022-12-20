@@ -20,7 +20,7 @@ public class EventController : ControllerBase
         return await _eventService.GetAsyncAllEvents();
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{NameId}")]
     public async Task<IActionResult> GetEventById(string id)
     {
         var obj = await _eventService.GetAsyncEventById(id);
@@ -49,7 +49,7 @@ public class EventController : ControllerBase
         return CreatedAtAction("GetEventById", new { id = obj.EventId}, obj);
     }
 
-    [HttpPut("{id}")]
+    [HttpPut("{NameId}")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -62,7 +62,7 @@ public class EventController : ControllerBase
         await _eventService.UpdateAsync(id, eventRequest);
         return NoContent();
     }
-    [HttpDelete("{id}")]
+    [HttpDelete("{NameId}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]

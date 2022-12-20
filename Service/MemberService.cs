@@ -28,7 +28,11 @@ namespace Pioneer_Backend.Service
 
         public async Task<Member?> GetAsyncMemberByName(string nameId)
         {
-            return await _memberCollection.Find(x => x.NameID == nameId).FirstOrDefaultAsync();
+            return await _memberCollection.Find(x => x.NameId == nameId).FirstOrDefaultAsync();
+        }
+        public Member GetMemberSyncByName(string nameId)
+        {
+            return _memberCollection.Find(x=>x.NameId== nameId).FirstOrDefault();
         }
 
         public async Task<Member?> GetAsyncMemberById(string id)

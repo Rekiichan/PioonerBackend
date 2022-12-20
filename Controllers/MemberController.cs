@@ -2,6 +2,8 @@
 using Pioneer_Backend.Service;
 using Pioneer_Backend.Model;
 using Pioneer_Backend.Model.UpsertModel;
+using Pioneer_Backend.PreProccessData;
+using MongoDB.Bson;
 
 namespace Pioneer_Backend.Controllers;
 [ApiController]
@@ -32,26 +34,21 @@ public class MemberController : ControllerBase
         return Ok(member);
     }
 
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetById(string id)
-    {
-        var member = await _memberService.GetAsyncMemberById(id);
-        if (member == null)
-        {
-            return NotFound();
-        }
-        return Ok(member);
-    }
-
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Post(MemberUpsert newMember)
     {
+        var nameId = NameIdConvert.NameToNameId(newMember.Name);
+        var isExist = _memberService.GetMemberSyncByName(nameId);
+        if (isExist != null)
+        {
+            return BadRequest($"{newMember.Name} is Already Exist!!!");
+        }
         var member = new Member()
         {
-            NameID = newMember.NameID,
+            NameId = nameId,
             Name = newMember.Name,
             Mssv = newMember.Mssv,
             Role = newMember.Role,
@@ -60,18 +57,14 @@ public class MemberController : ControllerBase
             Strenghs = newMember.Strenghs,
             Term = newMember.Term,
             Class = newMember.Class,
-            Facebook = newMember.Facebook,
-            Gmail = newMember.Gmail,
-            GitHub = newMember.GitHub,
-            Linkedin = newMember.Linkedin,
-            CV = newMember.CV,
+            Contact = newMember.Contact,
             Description = newMember.Description,
         };
         await _memberService.CreateAsync(member);
-        return CreatedAtAction("GetById", new { id = member.MemberId }, member);
+        return CreatedAtAction("GetByNameId", new { nameId = member.NameId }, member);
     }
 
-    [HttpPut("{id}")]
+    [HttpPut("{NameId}")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -83,10 +76,14 @@ public class MemberController : ControllerBase
         {
             return NotFound();
         }
+        if (member.Name == memberRequest.Name)
+        {
+
+        }
         var obj = new Member()
         {
             MemberId = id,
-            NameID = memberRequest.NameID,
+            NameId = (member.Name == memberRequest.Name) ? member.NameId : NameIdConvert.NameToNameId(memberRequest.Name),
             Name = memberRequest.Name,
             Mssv = memberRequest.Mssv,
             Role = memberRequest.Role,
@@ -95,17 +92,13 @@ public class MemberController : ControllerBase
             Strenghs = memberRequest.Strenghs,
             Term = memberRequest.Term,
             Class = memberRequest.Class,
-            Facebook = memberRequest.Facebook,
-            Gmail = memberRequest.Gmail,
-            GitHub = memberRequest.GitHub,
-            Linkedin = memberRequest.Linkedin,
-            CV = memberRequest.CV,
+            Contact = memberRequest.Contact,
             Description = memberRequest.Description
         };
         await _memberService.UpdateAsync(id, obj);
         return NoContent();
     }
-    [HttpDelete("{id}")]
+    [HttpDelete("{NameId}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
