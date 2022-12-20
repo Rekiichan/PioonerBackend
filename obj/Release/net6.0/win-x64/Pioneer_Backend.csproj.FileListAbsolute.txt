@@ -5,9 +5,6 @@ D:\WorkspaceCLB\back-end\Pioneer_Backend\bin\Release\net6.0\win-x64\Pioneer_Back
 D:\WorkspaceCLB\back-end\Pioneer_Backend\bin\Release\net6.0\win-x64\Pioneer_Backend.runtimeconfig.json
 D:\WorkspaceCLB\back-end\Pioneer_Backend\bin\Release\net6.0\win-x64\Pioneer_Backend.dll
 D:\WorkspaceCLB\back-end\Pioneer_Backend\bin\Release\net6.0\win-x64\Pioneer_Backend.pdb
-D:\WorkspaceCLB\back-end\Pioneer_Backend\bin\Release\net6.0\win-x64\AWSSDK.Core.dll
-D:\WorkspaceCLB\back-end\Pioneer_Backend\bin\Release\net6.0\win-x64\AWSSDK.DynamoDBv2.dll
-D:\WorkspaceCLB\back-end\Pioneer_Backend\bin\Release\net6.0\win-x64\AWSSDK.Extensions.NETCore.Setup.dll
 D:\WorkspaceCLB\back-end\Pioneer_Backend\bin\Release\net6.0\win-x64\Microsoft.OpenApi.dll
 D:\WorkspaceCLB\back-end\Pioneer_Backend\bin\Release\net6.0\win-x64\Swashbuckle.AspNetCore.Swagger.dll
 D:\WorkspaceCLB\back-end\Pioneer_Backend\bin\Release\net6.0\win-x64\Swashbuckle.AspNetCore.SwaggerGen.dll
@@ -33,3 +30,12 @@ D:\WorkspaceCLB\back-end\Pioneer_Backend\obj\Release\net6.0\win-x64\refint\Pione
 D:\WorkspaceCLB\back-end\Pioneer_Backend\obj\Release\net6.0\win-x64\Pioneer_Backend.pdb
 D:\WorkspaceCLB\back-end\Pioneer_Backend\obj\Release\net6.0\win-x64\Pioneer_Backend.genruntimeconfig.cache
 D:\WorkspaceCLB\back-end\Pioneer_Backend\obj\Release\net6.0\win-x64\ref\Pioneer_Backend.dll
+D:\WorkspaceCLB\back-end\Pioneer_Backend\bin\Release\net6.0\win-x64\DnsClient.dll
+D:\WorkspaceCLB\back-end\Pioneer_Backend\bin\Release\net6.0\win-x64\MongoDB.Bson.dll
+D:\WorkspaceCLB\back-end\Pioneer_Backend\bin\Release\net6.0\win-x64\MongoDB.Driver.dll
+D:\WorkspaceCLB\back-end\Pioneer_Backend\bin\Release\net6.0\win-x64\MongoDB.Driver.Core.dll
+D:\WorkspaceCLB\back-end\Pioneer_Backend\bin\Release\net6.0\win-x64\MongoDB.Libmongocrypt.dll
+D:\WorkspaceCLB\back-end\Pioneer_Backend\bin\Release\net6.0\win-x64\SharpCompress.dll
+D:\WorkspaceCLB\back-end\Pioneer_Backend\bin\Release\net6.0\win-x64\Snappier.dll
+D:\WorkspaceCLB\back-end\Pioneer_Backend\bin\Release\net6.0\win-x64\ZstdSharp.dll
+D:\WorkspaceCLB\back-end\Pioneer_Backend\bin\Release\net6.0\win-x64\mongocrypt.dll

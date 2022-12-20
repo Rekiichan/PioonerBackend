@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\WorkspaceCLB\back-end\Pioneer_Backend\bin\Release\net6.0\publish\share1</_PublishTargetUrl>
+    <History>True|2022-12-20T16:33:46.7762283Z;True|2022-12-20T23:32:52.3807842+07:00;True|2022-12-20T23:26:36.2798349+07:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>
