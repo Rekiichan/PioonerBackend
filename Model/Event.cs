@@ -7,7 +7,7 @@ namespace Pioneer_Backend.Model
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public int EventId { get; set; }
+        public string? EventId { get; set; }
         [BsonElement("eventName")]
         public string EventName { get; set; }
         [BsonElement("eventDate")]

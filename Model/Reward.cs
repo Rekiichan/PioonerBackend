@@ -20,5 +20,7 @@ namespace Pioneer_Backend.Model
         public string ContestName { get; set; }
         [BsonElement("imageUrl")]
         public string? ImageUrl { get; set; } = null;
+        [BsonElement("description")]
+        public string? Description { get; set; } = null;
     }
 }

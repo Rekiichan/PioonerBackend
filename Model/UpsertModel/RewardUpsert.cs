@@ -15,5 +15,7 @@ namespace Pioneer_Backend.Model.UpsertModel
         public string ContestName { get; set; }
         [BsonElement("imageUrl")]
         public string? ImageUrl { get; set; } = null;
+        [BsonElement("description")]
+        public string? Description { get; set; } = null;
     }
 }
