@@ -32,7 +32,7 @@ namespace Pioneer_Backend.Service
         }
 
         public async Task CreateAsync(Reward newReward)
-        {
+        {   
             await _rewardCollection.InsertOneAsync(newReward);
         }
 

@@ -2,13 +2,10 @@
 using MongoDB.Bson;
 using System.Text.Json.Serialization;
 
-namespace Pioneer_Backend.Model
+namespace Pioneer_Backend.Model.UpsertModel
 {
-    public class Member
+    public class MemberUpsert
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string? MemberId { get; set; }
         [BsonElement("nameID")]
         public string? NameID { get; set; } = null;
         [BsonElement("name")]

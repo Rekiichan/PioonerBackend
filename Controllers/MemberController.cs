@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Pioneer_Backend.Service;
 using Pioneer_Backend.Model;
+using Pioneer_Backend.Model.UpsertModel;
 
 namespace Pioneer_Backend.Controllers;
 [ApiController]
@@ -12,7 +13,7 @@ public class MemberController : ControllerBase
     {
         _memberService = context;
     }
-    // GET: api/Member
+
     [HttpGet]
     public async Task<List<Member>> Get()
     {
@@ -45,15 +46,33 @@ public class MemberController : ControllerBase
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> Post(Member newMember)
+    public async Task<IActionResult> Post(MemberUpsert newMember)
     {
         var isExist = await _memberService.GetAsyncMemberByName(newMember.NameID);
         if (isExist != null)
         {
             return BadRequest($"Members with NameId {newMember.NameID} Already Exists");
         }
-        await _memberService.CreateAsync(newMember);
-        return CreatedAtAction("GetById", new { id = newMember.MemberId }, newMember);
+        var member = new Member()
+        {
+            NameID = newMember.NameID,
+            Name = newMember.Name,
+            Mssv = newMember.Mssv,
+            Role = newMember.Role,
+            Position = newMember.Position,
+            ImageUrl = newMember.ImageUrl,
+            Strenghs = newMember.Strenghs,
+            Term = newMember.Term,
+            Class = newMember.Class,
+            Facebook = newMember.Facebook,
+            Gmail = newMember.Gmail,
+            GitHub = newMember.GitHub,
+            Linkedin = newMember.Linkedin,
+            CV = newMember.CV,
+            Description = newMember.Description,
+        };
+        await _memberService.CreateAsync(member);
+        return CreatedAtAction("GetById", new { id = member.MemberId }, member);
     }
 
     [HttpPut("{id}")]
@@ -65,6 +84,7 @@ public class MemberController : ControllerBase
     {
         var member = await _memberService.GetAsyncMemberById(id);
         if (member == null) return NotFound();
+
         memberRequest.MemberId = member.MemberId;
         await _memberService.UpdateAsync(id, memberRequest);
         return NoContent();
