@@ -1,0 +1,22 @@
+
+{
+    "region" : "ap-southeast-1",
+    "configuration" : "Debug",
+    "framework"     : "net6.0",
+    "self-contained" : false,
+    "application"    : "PioneerBackend",
+    "environment"    : "PioneerBackend-dev",
+    "app-path"       : "/",
+    "iis-website"    : "Default Web Site",
+    "enable-xray"    : false,
+    "enhanced-health-type" : "basic",
+    "additional-options"   : "",
+    "solution-stack"       : "64bit Amazon Linux 2 v2.4.2 running .NET Core",
+    "environment-type"     : "SingleInstance",
+    "cname"                : "pioneerbackend-dev",
+    "instance-type"        : "t1.micro",
+    "key-pair"             : "",
+    "instance-profile"     : "aws-elasticbeanstalk-ec2-role",
+    "service-role"         : "aws-elasticbeanstalk-service-role",
+    "proxy-server"         : "nginx"
+}

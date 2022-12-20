@@ -5,22 +5,22 @@ VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pioneer_Backend", "Pioneer_Backend.csproj", "{001C5280-D9D7-4229-8362-B8C0E6F18234}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DriveAPI", "..\DriveAPI\DriveAPI.csproj", "{117AD70F-712F-4C5A-AB98-70645199B51A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{001C5280-D9D7-4229-8362-B8C0E6F18234}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{001C5280-D9D7-4229-8362-B8C0E6F18234}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{001C5280-D9D7-4229-8362-B8C0E6F18234}.Debug|x64.ActiveCfg = Debug|x64
+		{001C5280-D9D7-4229-8362-B8C0E6F18234}.Debug|x64.Build.0 = Debug|x64
 		{001C5280-D9D7-4229-8362-B8C0E6F18234}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{001C5280-D9D7-4229-8362-B8C0E6F18234}.Release|Any CPU.Build.0 = Release|Any CPU
-		{117AD70F-712F-4C5A-AB98-70645199B51A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{117AD70F-712F-4C5A-AB98-70645199B51A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{117AD70F-712F-4C5A-AB98-70645199B51A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{117AD70F-712F-4C5A-AB98-70645199B51A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{001C5280-D9D7-4229-8362-B8C0E6F18234}.Release|x64.ActiveCfg = Release|x64
+		{001C5280-D9D7-4229-8362-B8C0E6F18234}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,14 @@
+D:\WorkspaceCLB\back-end\Pioneer_Backend\obj\Release\net6.0\win-x86\PubTmp\Out\Pioneer_Backend.exe
+D:\WorkspaceCLB\back-end\Pioneer_Backend\obj\Release\net6.0\win-x86\PubTmp\Out\appsettings.Development.json
+D:\WorkspaceCLB\back-end\Pioneer_Backend\obj\Release\net6.0\win-x86\PubTmp\Out\appsettings.json
+D:\WorkspaceCLB\back-end\Pioneer_Backend\obj\Release\net6.0\win-x86\PubTmp\Out\Pioneer_Backend.dll
+D:\WorkspaceCLB\back-end\Pioneer_Backend\obj\Release\net6.0\win-x86\PubTmp\Out\Pioneer_Backend.deps.json
+D:\WorkspaceCLB\back-end\Pioneer_Backend\obj\Release\net6.0\win-x86\PubTmp\Out\Pioneer_Backend.runtimeconfig.json
+D:\WorkspaceCLB\back-end\Pioneer_Backend\obj\Release\net6.0\win-x86\PubTmp\Out\Pioneer_Backend.pdb
+D:\WorkspaceCLB\back-end\Pioneer_Backend\obj\Release\net6.0\win-x86\PubTmp\Out\AWSSDK.Core.dll
+D:\WorkspaceCLB\back-end\Pioneer_Backend\obj\Release\net6.0\win-x86\PubTmp\Out\AWSSDK.DynamoDBv2.dll
+D:\WorkspaceCLB\back-end\Pioneer_Backend\obj\Release\net6.0\win-x86\PubTmp\Out\AWSSDK.Extensions.NETCore.Setup.dll
+D:\WorkspaceCLB\back-end\Pioneer_Backend\obj\Release\net6.0\win-x86\PubTmp\Out\Microsoft.OpenApi.dll
+D:\WorkspaceCLB\back-end\Pioneer_Backend\obj\Release\net6.0\win-x86\PubTmp\Out\Swashbuckle.AspNetCore.Swagger.dll
+D:\WorkspaceCLB\back-end\Pioneer_Backend\obj\Release\net6.0\win-x86\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\WorkspaceCLB\back-end\Pioneer_Backend\obj\Release\net6.0\win-x86\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerUI.dll
