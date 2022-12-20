@@ -22,8 +22,6 @@ builder.Services.AddSingleton<ProjectService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

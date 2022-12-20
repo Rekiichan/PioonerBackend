@@ -19,7 +19,7 @@ namespace Pioneer_Backend.Model
         [BsonElement("projectName")]
         public string ProjectName { get; set; }
         [BsonElement("yearImplement")]
-        public int YearImplement { get; set; } = 2022;
+        public int YearImplement { get; set; }
         [BsonElement("documentUrl")]
         public string? DocumentUrl { get; set; } = null;
         [BsonElement("description")]
