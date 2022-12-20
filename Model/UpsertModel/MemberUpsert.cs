@@ -20,7 +20,7 @@ namespace Pioneer_Backend.Model.UpsertModel
         [BsonElement("imageUrl")]
         public string ImageUrl { get; set; }
         [BsonElement("strenghs")]
-        public string Strenghs { get; set; }
+        public List<string> Strenghs { get; set; }
         [BsonElement("term")]
         public string Term { get; set; }
         [BsonElement("class")]

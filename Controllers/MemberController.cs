@@ -17,6 +17,7 @@ public class MemberController : ControllerBase
     [HttpGet]
     public async Task<List<Member>> Get()
     {
+        Console.WriteLine("get all");
         return await _memberService.GetAsyncAllMembers();
     }
 
@@ -75,13 +76,33 @@ public class MemberController : ControllerBase
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> UpdateMember(Member memberRequest, string id)
+    public async Task<IActionResult> UpdateMember(MemberUpsert memberRequest, string id)
     {
         var member = await _memberService.GetAsyncMemberById(id);
-        if (member == null) return NotFound();
-
-        memberRequest.MemberId = member.MemberId;
-        await _memberService.UpdateAsync(id, memberRequest);
+        if (member == null)
+        {
+            return NotFound();
+        }
+        var obj = new Member()
+        {
+            MemberId = id,
+            NameID = memberRequest.NameID,
+            Name = memberRequest.Name,
+            Mssv = memberRequest.Mssv,
+            Role = memberRequest.Role,
+            Position = memberRequest.Position,
+            ImageUrl = memberRequest.ImageUrl,
+            Strenghs = memberRequest.Strenghs,
+            Term = memberRequest.Term,
+            Class = memberRequest.Class,
+            Facebook = memberRequest.Facebook,
+            Gmail = memberRequest.Gmail,
+            GitHub = memberRequest.GitHub,
+            Linkedin = memberRequest.Linkedin,
+            CV = memberRequest.CV,
+            Description = memberRequest.Description
+        };
+        await _memberService.UpdateAsync(id, obj);
         return NoContent();
     }
     [HttpDelete("{id}")]
