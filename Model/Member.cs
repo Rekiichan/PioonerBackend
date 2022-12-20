@@ -1,44 +1,47 @@
-﻿using Amazon.DynamoDBv2.DataModel;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Pioneer_Backend
 {
-    [DynamoDBTable("Members")]
     public class Member
     {
-        [DynamoDBHashKey("nameId")]
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string? MemberId { get; set; }
+        [BsonElement("nameID")]
         public string? NameID { get; set; } = null;
-        [DynamoDBProperty("name")]
+        [BsonElement("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
-        [DynamoDBProperty("mssv")]
+        [BsonElement("mssv")]
         public int Mssv { get; set; }
-        [DynamoDBProperty("role")]
+        [BsonElement("role")]
         public string Role { get; set; }
-        [DynamoDBProperty("position")]
+        [BsonElement("position")]
         public string Position { get; set; }
-        [DynamoDBProperty("imageUrl")]
+        [BsonElement("imageUrl")]
         public string ImageUrl { get; set; }
-        [DynamoDBProperty("strenghs")]
+        [BsonElement("strenghs")]
         public string Strenghs { get; set; }
-        [DynamoDBProperty("term")]
+        [BsonElement("term")]
         public string Term { get; set; }
-        [DynamoDBProperty("class")]
+        [BsonElement("class")]
         public string Class { get; set; }
-        [DynamoDBProperty("facebook")]
-        public string? Facebook { get; set; } = null;
-        [DynamoDBProperty("gmail")]
-        public string? Gmail { get; set; } = null;
-        [DynamoDBProperty("gitHub")]
+        [BsonElement("facebook")]
+        public string? Facebook { get; set; } = null; 
+        [BsonElement("gmail")]
+        public string? Gmail { get; set; } = null; 
+        [BsonElement("gitHub")]
         public string? GitHub { get; set; } = null;
-        [DynamoDBProperty("linkedin")]
-        public string? Linkedin { get; set; } = null;
-        [DynamoDBProperty("cv")] 
+        [BsonElement("linkedin")]
+        public string? Linkedin { get; set; } = null; 
+        [BsonElement("cv")]
         public string? CV { get; set; } = null;
-        [DynamoDBProperty("describe")]
-        public string? Describe { get; set; } = null;
-
+        [BsonElement("describe")]
+        public string? Describe { get; set; } = null; 
     }
 }

@@ -1,31 +1,44 @@
-﻿using Amazon.DynamoDBv2.DataModel;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Pioneer_Backend;
+using Pioneer_Backend.Service;
+using ZstdSharp.Unsafe;
+using static MongoDB.Bson.Serialization.Serializers.SerializerHelper;
 
 namespace Pioneer_Backend.Controllers;
-[Route("api/[controller]")]
 [ApiController]
+[Route("api/[controller]")]
 public class MemberController : ControllerBase
 {
-    private readonly IDynamoDBContext _context;
-    public MemberController(IDynamoDBContext context)
+    private readonly MemberService _memberService;
+    public MemberController(MemberService context)
     {
-        _context = context;
+        _memberService = context;
     }
     // GET: api/Member
     [HttpGet]
-    public async Task<IActionResult> GetAllmembers()
+    public async Task<List<Member>> Get()
     {
-        var MemberList = await _context.ScanAsync<Member>(default).GetRemainingAsync();
-        return Ok(MemberList);
+        return await _memberService.GetAsyncAllMember();
     }
+
     [HttpGet("{nameId}")]
     public async Task<IActionResult> GetByNameId(string nameId)
     {
-        var member = await _context.LoadAsync<Member>(nameId);
+        var member = await _memberService.GetAsyncMemberByName(nameId);
         if (member == null)
-        { 
-            return NotFound(); 
+        {
+            return NotFound();
+        }
+        return Ok(member);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(string id)
+    {
+        var member = await _memberService.GetAsyncMemberById(id);
+        if (member == null)
+        {
+            return NotFound();
         }
         return Ok(member);
     }
@@ -34,34 +47,42 @@ public class MemberController : ControllerBase
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> CreateMember(Member memberRequest)
+    public async Task<IActionResult> Post(Member newMember)
     {
-        var member = await _context.LoadAsync<Member>(memberRequest.NameID);
-
-        if (member != null) return BadRequest($"Members with Id {memberRequest.NameID} Already Exists");
-        await _context.SaveAsync(memberRequest);
-        return Ok(memberRequest);
+        var isExist = await _memberService.GetAsyncMemberByName(newMember.NameID);
+        if (isExist != null)
+        {
+            return BadRequest($"Members with NameId {newMember.NameID} Already Exists");
+        }
+        await _memberService.CreateAsync(newMember);
+        return CreatedAtAction("GetById", new { id = newMember.MemberId }, newMember);
     }
 
-    [HttpDelete("{nameId}")]
+    [HttpPut("{id}")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> DeleteMember(string nameId)
+    public async Task<IActionResult> UpdateMember(Member memberRequest, string id)
     {
-        var member = await _context.LoadAsync<Member>(nameId);
+        var member = await _memberService.GetAsyncMemberById(id);
         if (member == null) return NotFound();
-        await _context.DeleteAsync(member);
+        memberRequest.MemberId = member.MemberId;
+        await _memberService.UpdateAsync(id, memberRequest);
         return NoContent();
     }
-    [HttpPut("{nameId}")]
-    [ProducesResponseType(StatusCodes.Status201Created)]
+    [HttpDelete("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> UpdateMember(Member memberRequest, string nameId)
+    public async Task<IActionResult> DeleteMember(string id)
     {
-        var member = await _context.LoadAsync<Member>(nameId);
-        if (member == null) return NotFound();
-        await _context.SaveAsync(memberRequest);
-        return Ok(memberRequest);
+        var member = await _memberService.GetAsyncMemberById(id);
+        if (member == null)
+        {
+            return NotFound();
+        }
+        await _memberService.RemoveAsync(id);
+        return NoContent();
     }
 }
