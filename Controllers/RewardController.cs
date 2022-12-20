@@ -35,15 +35,19 @@ public class RewardController : ControllerBase
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> AddReward(Reward newReward)
+    public async Task<IActionResult> AddReward(RewardUpsert newReward)
     {
-        var isExist = await _rewardService.GetAsyncRewardById(newReward.RewardId);
-        if (isExist != null)
+        var obj = new Reward()
         {
-            return BadRequest($"Reward with Id {newReward.RewardId} Already Exists");
-        }
-        await _rewardService.CreateAsync(newReward);
-        return CreatedAtAction("GetRewardById", new { id = newReward.RewardId }, newReward);
+            MemberName= newReward.MemberName,
+            Mssv = newReward.Mssv,
+            RewardRank=newReward.RewardRank,
+            ContestName=newReward.ContestName,
+            ImageUrl = newReward.ImageUrl,
+            Description = newReward.Description,
+        };
+        await _rewardService.CreateAsync(obj);
+        return CreatedAtAction("GetRewardById", new { id = obj.RewardId }, obj);
     }
 
     [HttpPut("{id}")]

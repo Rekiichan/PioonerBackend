@@ -48,11 +48,6 @@ public class MemberController : ControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Post(MemberUpsert newMember)
     {
-        var isExist = await _memberService.GetAsyncMemberByName(newMember.NameID);
-        if (isExist != null)
-        {
-            return BadRequest($"Members with NameId {newMember.NameID} Already Exists");
-        }
         var member = new Member()
         {
             NameID = newMember.NameID,

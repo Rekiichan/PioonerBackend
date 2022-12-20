@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Pioneer_Backend.Service;
 using Pioneer_Backend.Model;
+using Pioneer_Backend.Model.UpsertModel;
 
 namespace Pioneer_Backend.Controllers;
 [ApiController]
@@ -34,15 +35,20 @@ public class ProjectController : ControllerBase
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> Post(Project newProject)
+    public async Task<IActionResult> Post(ProjectUpsert newProject)
     {
-        var isExist = await _projectService.GetAsyncProjectById(newProject.ProjectId);
-        if (isExist != null)
+        var obj = new Project()
         {
-            return BadRequest($"Projects with Id {newProject.ProjectId} Already Exists");
-        }
-        await _projectService.CreateAsync(newProject);
-        return CreatedAtAction("GetProjectById", new { id = newProject.ProjectId }, newProject);
+            Name= newProject.Name,
+            Mssv =newProject.Mssv,
+            ProjectName=newProject.ProjectName,
+            YearImplement =newProject.YearImplement,
+            DocumentUrl=newProject.DocumentUrl,
+            ImageUrl = newProject.ImageUrl,
+            Description = newProject.Description,
+        };
+        await _projectService.CreateAsync(obj);
+        return CreatedAtAction("GetProjectById", new { id = obj.ProjectId }, obj);
     }
 
     [HttpPut("{id}")]
