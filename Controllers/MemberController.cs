@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Pioneer_Backend;
 using Pioneer_Backend.Service;
-using ZstdSharp.Unsafe;
-using static MongoDB.Bson.Serialization.Serializers.SerializerHelper;
+using Pioneer_Backend.Model;
 
 namespace Pioneer_Backend.Controllers;
 [ApiController]
@@ -18,7 +16,7 @@ public class MemberController : ControllerBase
     [HttpGet]
     public async Task<List<Member>> Get()
     {
-        return await _memberService.GetAsyncAllMember();
+        return await _memberService.GetAsyncAllMembers();
     }
 
     [HttpGet("{nameId}")]

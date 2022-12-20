@@ -1,23 +1,30 @@
 {
   "version": 2,
-  "dgSpecHash": "SvbRFuugYwDl1vhDnYWuIRLgQjLAwTM++WSsxyG8jKyPCmVvOb8lp6S0FVvkBa4hOZWalZVuoqtH/28KUbW3tw==",
+  "dgSpecHash": "NTc0RwYq+jQwEKZNaqzmD883V1onGFTXjcAYSiqcwK/+XWj6HfyexU+JXvMo5ZHzo1+YnrCfOM2LaAPPQ1AzzA==",
   "success": true,
   "projectFilePath": "D:\\WorkspaceCLB\\back-end\\Pioneer_Backend\\Pioneer_Backend.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\dtnha\\.nuget\\packages\\awssdk.core\\3.7.101.1\\awssdk.core.3.7.101.1.nupkg.sha512",
-    "C:\\Users\\dtnha\\.nuget\\packages\\awssdk.dynamodbv2\\3.7.100.29\\awssdk.dynamodbv2.3.7.100.29.nupkg.sha512",
-    "C:\\Users\\dtnha\\.nuget\\packages\\awssdk.extensions.netcore.setup\\3.7.2\\awssdk.extensions.netcore.setup.3.7.2.nupkg.sha512",
+    "C:\\Users\\dtnha\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",
     "C:\\Users\\dtnha\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
-    "C:\\Users\\dtnha\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\2.0.0\\microsoft.extensions.configuration.abstractions.2.0.0.nupkg.sha512",
-    "C:\\Users\\dtnha\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\2.0.0\\microsoft.extensions.dependencyinjection.abstractions.2.0.0.nupkg.sha512",
     "C:\\Users\\dtnha\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\2.0.0\\microsoft.extensions.logging.abstractions.2.0.0.nupkg.sha512",
-    "C:\\Users\\dtnha\\.nuget\\packages\\microsoft.extensions.primitives\\2.0.0\\microsoft.extensions.primitives.2.0.0.nupkg.sha512",
+    "C:\\Users\\dtnha\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "C:\\Users\\dtnha\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\dtnha\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
+    "C:\\Users\\dtnha\\.nuget\\packages\\mongodb.bson\\2.18.0\\mongodb.bson.2.18.0.nupkg.sha512",
+    "C:\\Users\\dtnha\\.nuget\\packages\\mongodb.driver\\2.18.0\\mongodb.driver.2.18.0.nupkg.sha512",
+    "C:\\Users\\dtnha\\.nuget\\packages\\mongodb.driver.core\\2.18.0\\mongodb.driver.core.2.18.0.nupkg.sha512",
+    "C:\\Users\\dtnha\\.nuget\\packages\\mongodb.libmongocrypt\\1.6.0\\mongodb.libmongocrypt.1.6.0.nupkg.sha512",
+    "C:\\Users\\dtnha\\.nuget\\packages\\sharpcompress\\0.30.1\\sharpcompress.0.30.1.nupkg.sha512",
+    "C:\\Users\\dtnha\\.nuget\\packages\\snappier\\1.0.0\\snappier.1.0.0.nupkg.sha512",
     "C:\\Users\\dtnha\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
     "C:\\Users\\dtnha\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
     "C:\\Users\\dtnha\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
     "C:\\Users\\dtnha\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512",
-    "C:\\Users\\dtnha\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.4.0\\system.runtime.compilerservices.unsafe.4.4.0.nupkg.sha512"
+    "C:\\Users\\dtnha\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
+    "C:\\Users\\dtnha\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512",
+    "C:\\Users\\dtnha\\.nuget\\packages\\system.security.accesscontrol\\5.0.0\\system.security.accesscontrol.5.0.0.nupkg.sha512",
+    "C:\\Users\\dtnha\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512",
+    "C:\\Users\\dtnha\\.nuget\\packages\\zstdsharp.port\\0.6.2\\zstdsharp.port.0.6.2.nupkg.sha512"
   ],
   "logs": []
 }

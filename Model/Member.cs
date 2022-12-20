@@ -1,11 +1,8 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace Pioneer_Backend
+namespace Pioneer_Backend.Model
 {
     public class Member
     {
@@ -16,7 +13,7 @@ namespace Pioneer_Backend
         public string? NameID { get; set; } = null;
         [BsonElement("name")]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
         [BsonElement("mssv")]
         public int Mssv { get; set; }
         [BsonElement("role")]

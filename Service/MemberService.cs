@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using Pioneer_Backend.DataAccess;
+using Pioneer_Backend.Model;
 
 namespace Pioneer_Backend.Service
 {
@@ -14,13 +15,13 @@ namespace Pioneer_Backend.Service
                 MemberDatabaseSettings.Value.ConnectionString);
 
             var mongoDatabase = mongoClient.GetDatabase(
-                MemberDatabaseSettings.Value.DatabaseName);
+                (string)MemberDatabaseSettings.Value.DatabaseName);
 
             _memberCollection = mongoDatabase.GetCollection<Member>(
-                MemberDatabaseSettings.Value.BooksCollectionName);
+                MemberDatabaseSettings.Value.MembersCollectionName);
         }
 
-        public async Task<List<Member>> GetAsyncAllMember()
+        public async Task<List<Member>> GetAsyncAllMembers()
         {
             return await _memberCollection.Find(_ => true).ToListAsync();
         }

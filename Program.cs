@@ -3,14 +3,22 @@ using Pioneer_Backend.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddControllers()
+    .AddJsonOptions(
+        options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
+
 // Add services to the container.
 builder.Services.Configure<MemberDatabaseSettings>(
     builder.Configuration.GetSection("MemberStoreDatabase"));
-builder.Services.AddSingleton<MemberService>();
+builder.Services.Configure<RewardDatabaseSettings>(
+    builder.Configuration.GetSection("RewardStoreDatabase"));
+builder.Services.Configure<ProjectDatabaseSettings>(
+    builder.Configuration.GetSection("ProjectStoreDatabase"));
 
-builder.Services.AddControllers(); builder.Services.AddControllers()
-    .AddJsonOptions(
-        options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
+builder.Services.AddSingleton<MemberService>();
+builder.Services.AddSingleton<RewardService>();
+builder.Services.AddSingleton<ProjectService>();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
