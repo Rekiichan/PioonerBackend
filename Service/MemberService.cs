@@ -9,16 +9,16 @@ namespace Pioneer_Backend.Service
     {
         private readonly IMongoCollection<Member> _memberCollection;
 
-        public MemberService(IOptions<MemberDatabaseSettings> MemberDatabaseSettings)
+        public MemberService(IOptions<PioneerDatabaseSettings> PioneerDatabaseSettings)
         {
             var mongoClient = new MongoClient(
-                MemberDatabaseSettings.Value.ConnectionString);
+                PioneerDatabaseSettings.Value.ConnectionString);
 
             var mongoDatabase = mongoClient.GetDatabase(
-                (string)MemberDatabaseSettings.Value.DatabaseName);
+                (string)PioneerDatabaseSettings.Value.DatabaseName);
 
             _memberCollection = mongoDatabase.GetCollection<Member>(
-                MemberDatabaseSettings.Value.MembersCollectionName);
+                PioneerDatabaseSettings.Value.MembersCollectionName);
         }
 
         public async Task<List<Member>> GetAsyncAllMembers()

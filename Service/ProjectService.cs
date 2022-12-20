@@ -9,16 +9,16 @@ namespace Pioneer_Backend.Service
     {
         private readonly IMongoCollection<Project> _projectCollection;
 
-        public ProjectService(IOptions<ProjectDatabaseSettings> ProjectDatabaseSettings)
+        public ProjectService(IOptions<PioneerDatabaseSettings> PioneerDatabaseSettings)
         {
             var mongoClient = new MongoClient(
-                ProjectDatabaseSettings.Value.ConnectionString);
+                PioneerDatabaseSettings.Value.ConnectionString);
 
             var mongoDatabase = mongoClient.GetDatabase(
-                ProjectDatabaseSettings.Value.DatabaseName);
+                PioneerDatabaseSettings.Value.DatabaseName);
 
             _projectCollection = mongoDatabase.GetCollection<Project>(
-                ProjectDatabaseSettings.Value.ProjectsCollectionName);
+                PioneerDatabaseSettings.Value.ProjectsCollectionName);
         }
 
         public async Task<List<Project>> GetAsyncAllProjects()

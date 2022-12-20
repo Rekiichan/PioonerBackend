@@ -7,17 +7,14 @@ builder.Services.AddControllers()
     .AddJsonOptions(
         options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
 
-// Add services to the container.
-builder.Services.Configure<MemberDatabaseSettings>(
-    builder.Configuration.GetSection("MemberStoreDatabase"));
-builder.Services.Configure<RewardDatabaseSettings>(
-    builder.Configuration.GetSection("RewardStoreDatabase"));
-builder.Services.Configure<ProjectDatabaseSettings>(
-    builder.Configuration.GetSection("ProjectStoreDatabase"));
+builder.Services.Configure<PioneerDatabaseSettings>(
+    builder.Configuration.GetSection("PioneerDatabase"));
 
 builder.Services.AddSingleton<MemberService>();
 builder.Services.AddSingleton<RewardService>();
 builder.Services.AddSingleton<ProjectService>();
+builder.Services.AddSingleton<EventService>();
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

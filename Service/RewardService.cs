@@ -9,16 +9,16 @@ namespace Pioneer_Backend.Service
     {
         private readonly IMongoCollection<Reward> _rewardCollection;
 
-        public RewardService(IOptions<RewardDatabaseSettings> RewardDatabaseSettings)
+        public RewardService(IOptions<PioneerDatabaseSettings> PioneerDatabaseSettings)
         {
             var mongoClient = new MongoClient(
-                RewardDatabaseSettings.Value.ConnectionString);
+                PioneerDatabaseSettings.Value.ConnectionString);
 
             var mongoDatabase = mongoClient.GetDatabase(
-                (string)RewardDatabaseSettings.Value.DatabaseName);
+                (string)PioneerDatabaseSettings.Value.DatabaseName);
 
             _rewardCollection = mongoDatabase.GetCollection<Reward>(
-                RewardDatabaseSettings.Value.RewardsCollectionName);
+                PioneerDatabaseSettings.Value.RewardsCollectionName);
         }
 
         public async Task<List<Reward>> GetAsyncAllRewards()
